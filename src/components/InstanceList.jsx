@@ -21,7 +21,7 @@ const InstanceList = () => {
         {instances.map(instance => (
           <li key={instance.id} className="bg-white shadow-md rounded-lg p-4 mb-4">
             <p>Course ID: {instance.courseId}</p>
-            {/* Add more instance details */}
+           
           </li>
         ))}
       </ul>

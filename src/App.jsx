@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/course/:id" element={<CourseDetails />} />
+        <Route path="/course/:code" element={<CourseDetails />} />
         <Route path="/create-course" element={<CreateCourseForm />} />
         <Route path="/instances/:year/:semester" element={<InstanceList />} />
         <Route path="/instances/:year/:semester/:id" element={<InstanceDetails />} />
