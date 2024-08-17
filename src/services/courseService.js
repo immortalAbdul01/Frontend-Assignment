@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// Set the base URL for your backend API
+
 const BASE_URL = 'http://localhost:2000/api';
 
 // Fetch all courses
@@ -45,7 +45,9 @@ export const deleteCourse = async (code) => {
   }
 };
 
+
 // Fetch instances for a specific year and semester
+// Fetch instances with year and semester
 export const fetchInstances = async (year, semester) => {
   try {
     const response = await axios.get(`${BASE_URL}/instances/${year}/${semester}`);
@@ -56,13 +58,55 @@ export const fetchInstances = async (year, semester) => {
   }
 };
 
-// Fetch details of a specific instance
+// Fetch instances with year, semester, and course code
+export const fetchInstancesByCourseIdYearAndSemester = async (year, semester, courseCode) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/instances/${year}/${semester}/${courseCode}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching instances:', error);
+    throw error;
+  }
+};
+
+export const fetchAllInstances = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/instances`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching instances:', error);
+    throw error;
+  }
+};
+
+
 export const fetchInstanceDetails = async (year, semester, id) => {
   try {
     const response = await axios.get(`${BASE_URL}/instances/${year}/${semester}/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching instance details for id ${id}:`, error);
+    throw error;
+  }
+};
+
+
+// Delete an instance by year, semester, and courseId
+export const deleteInstance = async (year, semester, courseId) => {
+  try {
+    await axios.delete(`${BASE_URL}/instances/${year}/${semester}/${courseId}`);
+  } catch (error) {
+    console.error(`Error deleting instance for course ${courseId}, year ${year}, semester ${semester}:`, error);
+    throw error;
+  }
+};
+
+// Create a new course instance
+export const createInstance = async (instance) => {
+  try {
+    await axios.post(`${BASE_URL}/instances`, instance);
+  } catch (error) {
+    console.error('Error creating instance:', error);
     throw error;
   }
 };

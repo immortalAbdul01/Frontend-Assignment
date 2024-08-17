@@ -30,42 +30,57 @@ const CourseList = () => {
     <div className="container mx-auto p-6 bg-gray-100 min-h-screen">
       <div className="bg-white p-8 rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold mb-6 text-center">Course List</h1>
-        <div className="flex justify-end mb-4">
+        <div className="flex justify-between mb-4">
           <Link
             to="/create-course"
             className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg transition duration-300"
           >
             Create New Course
           </Link>
+          <Link
+            to="/course-instances"
+            className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg transition duration-300"
+          >
+            View All Instances
+          </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses.map(course => (
-            <div key={course.code} className="bg-white border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-              <h2 className="text-2xl font-bold mb-2 text-gray-800">{course.title}</h2>
-              <p className="text-gray-600 mb-4">{course.description}</p>
-              <div className="flex justify-between items-center">
-                <Link
-                  to={`/course/${course.code}`}
-                  className="text-blue-500 hover:text-blue-600 font-medium transition duration-300"
-                >
-                  View Details
-                </Link>
-                <Link
-                  to={`/course/${course.code}/instances`}
-                  className="text-blue-500 hover:text-blue-600 font-medium transition duration-300"
-                >
-                  View Instances
-                </Link>
-              </div>
-              <button
-                className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition duration-300"
-                onClick={() => handleDelete(course.code)}
-              >
-                Delete
-              </button>
-            </div>
-          ))}
-        </div>
+        <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+          <thead>
+            <tr>
+              <th className="py-2 px-4 border-b">Course Title</th>
+              <th className="py-2 px-4 border-b">Code</th>
+              <th className="py-2 px-4 border-b">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {courses.map(course => (
+              <tr key={course.code}>
+                <td className="py-2 px-4 border-b">{course.title}</td>
+                <td className="py-2 px-4 border-b">{course.code}</td>
+                <td className="py-2 px-4 border-b">
+                  <Link
+                    to={`/course/${course.code}`}
+                    className="text-blue-500 hover:text-blue-600 font-medium transition duration-300 mr-4"
+                  >
+                    View
+                  </Link>
+                  <Link
+                    to={`/course/${course.code}/create-instance`}
+                    className="text-green-500 hover:text-green-600 font-medium transition duration-300 mr-4"
+                  >
+                    Create Instance
+                  </Link>
+                  <button
+                    className="text-red-500 hover:text-red-600 font-medium transition duration-300"
+                    onClick={() => handleDelete(course.code)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

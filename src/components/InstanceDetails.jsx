@@ -21,7 +21,7 @@ const InstanceDetails = () => {
       <h1 className="text-2xl font-bold">Course Instance Details</h1>
       <p>Year: {instance.year}</p>
       <p>Semester: {instance.semester}</p>
-      {/* Add more details */}
+
     </div>
   );
 };

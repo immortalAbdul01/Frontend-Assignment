@@ -1,4 +1,3 @@
-// src/components/CourseDetails.jsx
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchCourseDetails } from '../services/courseService';
@@ -32,10 +31,32 @@ const CourseDetails = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold">{course?.title}</h1>
-      <p className="text-gray-600">{course?.description}</p>
-      <p className="mt-4">Course Code: {course?.code}</p>
+    <div className="container mx-auto p-8 bg-white rounded-lg shadow-lg">
+      <h1 className="text-3xl font-bold text-center mb-6">Course Details</h1>
+      <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+        <tbody>
+          <tr className="border-b">
+            <td className="py-4 px-6 font-semibold bg-gray-100">Course Title</td>
+            <td className="py-4 px-6">{course?.title}</td>
+          </tr>
+          <tr className="border-b">
+            <td className="py-4 px-6 font-semibold bg-gray-100">Course Code</td>
+            <td className="py-4 px-6">{course?.code}</td>
+          </tr>
+          <tr className="border-b">
+            <td className="py-4 px-6 font-semibold bg-gray-100">Description</td>
+            <td className="py-4 px-6">{course?.description}</td>
+          </tr>
+          <tr className="border-b">
+            <td className="py-4 px-6 font-semibold bg-gray-100">Credits</td>
+            <td className="py-4 px-6">{course?.credits || "N/A"}</td>
+          </tr>
+          <tr>
+            <td className="py-4 px-6 font-semibold bg-gray-100">Instructor</td>
+            <td className="py-4 px-6">{course?.instructor || "Not Available"}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };
